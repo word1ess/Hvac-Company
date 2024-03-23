@@ -8043,9 +8043,15 @@ body {
     flex: 1 1 auto;
     width: 100%;
     font-size: 18px;
-    color: #d91a3d;
+    color: #000;
   }
   .header__links a.has-submenu::before {
+    color: #000;
+  }
+  .header__links a.has-submenu.active {
+    color: #d91a3d;
+  }
+  .header__links a.has-submenu.active::before {
     color: #d91a3d;
   }
   .header__links a:not(:last-child)::after {
