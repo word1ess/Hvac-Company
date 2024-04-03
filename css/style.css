@@ -6638,6 +6638,20 @@ textarea::placeholder,
      object-fit: contain;
 }
 
+.rating polygon:hover {
+  cursor: pointer;
+  transition: 500ms;
+  fill: gold;
+}
+
+.rating polygon {
+  fill: lightgrey;
+}
+
+.rating polygon.active {
+  fill: gold;
+}
+
 .videos .swiper-slide iframe,
 .videos .swiper-slide video {
   display: block;
