@@ -5518,26 +5518,21 @@ body.burger-active {
   height: 100%;
   background: #bcbcbc;
 }
-.header__links a.has-submenu {
-  transition: all 300ms ease;
-}
-.header__links a.has-submenu::before {
-  content: "▾";
+.header__arrow {
   position: absolute;
   font-size: 20px;
   color: #fff;
   right: -22.5px;
+  top: 3px;
   width: 30px;
   height: 30px;
   transition: all 300ms ease;
+  cursor: pointer;
 }
-.header__links a.has-submenu.active::before {
-  color: #fff;
+.header__arrow.active {
+  color: #d91a3d;
   transform: rotateX(180deg);
-  top: -5px;
-}
-.header__links a.has-submenu.active {
-  color: #fff;
+  top: -8px;
 }
 .header__link {
   position: relative;
@@ -5545,7 +5540,7 @@ body.burger-active {
 
 .submenu {
   display: none;
-  max-width: 700px;
+  max-width: 900px;
   position: absolute;
   transform: translate(-20%, -10px);
   left: -50%;
@@ -5565,7 +5560,7 @@ body.burger-active {
   background: #fff;
   padding: 30px 65px;
   width: 100%;
-  max-width: 700px;
+  max-width: 900px;
 }
 .submenu a {
   color: #252525;
@@ -6571,11 +6566,11 @@ textarea::placeholder,
   font-size: 0px;
   border-radius: 0px !important;
   border: none !important;
-  color: #d91a3d;
+  color: #e07b37;
 }
 
 .plyr__control--overlaid {
-  background: #d91a3d;
+  background: #e07b37;
 }
 
 .write-review__stars {
@@ -6604,6 +6599,94 @@ textarea::placeholder,
 
 .section__more {
   z-index: 10 !important;
+}
+
+.plyrVideoContainer {
+  position: relative;
+  height: 100%;
+}
+
+.plyrVideoContainer.active .plyrVideoContainer__play {
+  display: none;
+}
+
+.plyrVideoContainer__play {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 60px;
+  width: 60px;
+  background: #d91a3d;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.plyrVideoContainer iframe {
+  display: block;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.videos .swiper-slide iframe,
+.videos .swiper-slide video {
+  display: block;
+  height: calc(100% - 90px);
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+}
+
+.rating polygon:hover {
+  cursor: pointer;
+  transition: 500ms;
+  fill: gold;
+}
+
+.rating polygon {
+  fill: lightgrey;
+}
+
+.rating polygon.active {
+  fill: gold;
+}
+
+.page-service__item *,
+.faq__item *,
+.projects__project * {
+  color: #000;
+  text-decoration: none;
+}
+
+.section__info .block-header * {
+  line-height: 1.1;
+}
+
+.text-standart p {
+  line-height: 1.5;
+}
+
+.submenu {
+  max-width: 900px;
+}
+.submenu__row {
+  max-width: 900px;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+}
+
+.item-page__table tr {
+  cursor: pointer;
 }
 
 .intro {
@@ -6682,7 +6765,8 @@ textarea::placeholder,
   line-height: 2.25rem;
 }
 
-.services__service:hover .services__text p {
+.services__service:hover .services__text p,
+.services__service:hover .services__text a {
   transform: translate(80px);
 }
 
@@ -6702,7 +6786,11 @@ textarea::placeholder,
   width: 100%;
 }
 
-.services__text p {
+.services__text p,
+.services__text a {
+  display: block;
+  color: #000;
+  text-decoration: none;
   transition: font-size 0ms, transform 0.3s ease;
 }
 
@@ -6770,18 +6858,6 @@ textarea::placeholder,
   position: relative;
 }
 
-.videos .swiper-slide iframe,
-.videos .swiper-slide video {
-  display: block;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
 .videos .plyr--video {
   max-height: 300px;
   height: 300px;
@@ -6813,6 +6889,7 @@ textarea::placeholder,
   flex: none;
   justify-content: flex-start;
   padding: 0;
+  font-size: 24px !important;
 }
 
 .book__inputs {
@@ -6863,7 +6940,7 @@ textarea::placeholder,
 
 .projects__row {
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
 .projects__project {
@@ -6918,7 +6995,7 @@ textarea::placeholder,
 
 .page-service__row {
   gap: 40px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 400px));
 }
 
 .page-service__img {
@@ -6938,7 +7015,7 @@ textarea::placeholder,
 }
 
 .faq__row {
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
 
 .faq__item {
@@ -7131,14 +7208,15 @@ textarea::placeholder,
 }
 
 .photos__row {
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
 
 .photos__photo {
   height: 300px;
 }
 
-.photos__photo * {
+.photos__photo video,
+.photos__photo iframe {
   height: 100%;
   left: 0;
   -o-object-fit: cover;
@@ -7230,7 +7308,7 @@ textarea::placeholder,
 }
 
 .text-reviews__row {
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
 
 .write-review {
@@ -7512,7 +7590,7 @@ textarea::placeholder,
 }
 
 .equipment__row {
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 }
 
 .equipment__item {
@@ -8064,6 +8142,9 @@ body {
     flex-wrap: wrap;
     gap: 16px;
   }
+  .header__arrow {
+    color: #000;
+  }
   .header__sale {
     order: 3;
   }
@@ -8268,6 +8349,7 @@ body {
     max-height: 400px;
     overflow-y: auto;
     border-radius: 20px;
+    z-index: 10;
   }
   .item-info__block.active {
     display: flex;
@@ -9113,24 +9195,25 @@ body {
     width: 100%;
     max-width: 100%;
   }
+  .book label.checkbox p::after,
+  .book label.checkbox p::before {
+    top: 50%;
+    transform: translateY(-50%);
+  }
   .book {
     padding-top: 32px;
   }
   .book label {
     justify-content: flex-start;
+    margin-bottom: 16px;
   }
   .book label p {
     font-size: 14px;
     padding: 0px;
   }
-  .book label.checkbox p {
-    padding: 20px 0px 0px;
-  }
-  .book label.checkbox p::before {
-    top: 2.5px;
-  }
-  .book label.checkbox p::after {
-    top: 10px;
+  .book label {
+    margin: 0 !important;
+    margin-bottom: 16px !important;
   }
   .book h3 {
     font-size: 16px;

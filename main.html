@@ -64,6 +64,9 @@
                                     <a href="#" class="text-neutral-800 font-bold text-lg uppercase">BEST OFFERS</a>
                                     <div class="header__link">
                                         <a href="#" class="text-neutral-800 font-bold text-lg uppercase">SERVICES</a>
+                                        <div class="header__arrow">
+                                            ▾
+                                        </div>
                                         <div class="submenu">
                                             <div class="submenu__row">
                                                 <a href="#">Heating repair</a>
@@ -345,11 +348,23 @@
                         </header>
                         <main class="swiper swiper-grid swiper-grid-two">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="./img/engineers/1.png" alt="1">
+                                <div class="swiper-slide plyrVideoContainer">
+                                    <video
+                                        id="plyrVideo"
+                                        class="plyr__video-embed"
+                                        poster="./img/video-preview.png"
+                                        preload="none"
+                                    >
+                                        <source src="./img/1.mp4">
+                                    </video>
+                                    <div class="plyrVideoContainer__play">
+                                        ▶
+                                    </div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <img src="./img/engineers/2.png" alt="2">
+                                    <div class="plyrVideoContainer">
+                                        <iframe src="https://www.youtube.com/embed/6wJAdfTJZUQ" allowfullscreen></iframe>
+                                    </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <img src="./img/engineers/2.png" alt="3">
@@ -414,13 +429,21 @@
                         </header>
                         <main class="swiper swiper-grid swiper-grid-three mb-40">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <video id="plyrVideo" class="plyr__video-embed">
+                                <div class="swiper-slide plyrVideoContainer">
+                                    <video
+                                        id="plyrVideo"
+                                        class="plyr__video-embed"
+                                        poster="./img/video-preview.png"
+                                        preload="none"
+                                    >
                                         <source src="./img/1.mp4">
                                     </video>
+                                    <div class="plyrVideoContainer__play">
+                                        ▶
+                                    </div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="plyr__video-embed" id="plyrVideo">
+                                    <div class="plyrVideoContainer">
                                         <iframe src="https://www.youtube.com/embed/6wJAdfTJZUQ" allowfullscreen></iframe>
                                     </div>
                                 </div>
@@ -564,18 +587,18 @@
                         <div class="swiper swiper-video">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <video id="plyrVideo">
-                                        <source src="./img/1.mp4">
-                                    </video>
-                                    <p class="swiper-vertical-three__name">Ashley R.</p>
-                                    <div class="flex gap-3 items-center">
-                                        <p class="text-2xl text-blue">☆☆☆☆☆</p>
-                                        <p class="text-gradient text-xl">4.5</p>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="plyr__video-embed" id="plyrVideo">
-                                        <iframe src="https://www.youtube.com/embed/6wJAdfTJZUQ" allowfullscreen></iframe>
+                                    <div class="plyrVideoContainer">
+                                        <video
+                                            id="plyrVideo"
+                                            class="plyr__video-embed"
+                                            poster="./img/video-preview.png"
+                                            preload="none"
+                                        >
+                                            <source src="./img/1.mp4">
+                                        </video>
+                                        <div class="plyrVideoContainer__play">
+                                            ▶
+                                        </div>
                                     </div>
                                     <p class="swiper-vertical-three__name">
                                         Ashley R.
@@ -586,19 +609,39 @@
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <video id="plyrVideo">
-                                        <source src="./img/1.mp4">
-                                    </video>
-                                    <p class="swiper-vertical-three__name">Ashley R.</p>
+                                    <iframe src="https://www.youtube.com/embed/6wJAdfTJZUQ" allowfullscreen></iframe>
+                                    <p class="swiper-vertical-three__name">
+                                        Ashley R.
+                                    </p>
                                     <div class="flex gap-3 items-center">
                                         <p class="text-2xl">☆☆☆☆☆</p>
                                         <p class="text-gradient text-xl">4.5</p>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
-                                    <div class="plyr__video-embed" id="plyrVideo">
-                                        <iframe src="https://www.youtube.com/embed/6wJAdfTJZUQ" allowfullscreen></iframe>
+                                    <div class="plyrVideoContainer">
+                                        <video
+                                            id="plyrVideo"
+                                            class="plyr__video-embed"
+                                            poster="./img/video-preview.png"
+                                            preload="none"
+                                        >
+                                            <source src="./img/1.mp4">
+                                        </video>
+                                        <div class="plyrVideoContainer__play">
+                                            ▶
+                                        </div>
                                     </div>
+                                    <p class="swiper-vertical-three__name">
+                                        Ashley R.
+                                    </p>
+                                    <div class="flex gap-3 items-center">
+                                        <p class="text-2xl">☆☆☆☆☆</p>
+                                        <p class="text-gradient text-xl">4.5</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <iframe src="https://www.youtube.com/embed/6wJAdfTJZUQ" allowfullscreen></iframe>
                                     <p class="swiper-vertical-three__name">
                                         Ashley R.
                                     </p>

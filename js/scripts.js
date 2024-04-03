@@ -34703,36 +34703,11 @@ $(".header__burger").click(function name(event) {
   $(".header__burger, .header__menu").toggleClass("burger-active");
 });
 $(".submenu").prev().addClass("has-submenu");
-if (window.screen.width < 992) {
-  $(".block__title").click(function name(event) {
-    $(this).toggleClass("footer-active").next().slideToggle(300);
-  });
-  $(".has-submenu").click(function (e) {
-    $(this).toggleClass("active");
-    $(this).next().toggleClass("active");
-  });
-} else {
-  $(".header__link").hover(
-    function (e) {
-      $(".has-submenu").addClass("active");
-      $(".has-submenu").next().addClass("active");
-    },
-    function (e) {
-      $(".has-submenu").removeClass("active");
-      $(".has-submenu").next().removeClass("active");
-    }
-  );
-  $(".submenu").hover(function (e) {
-    $(this).addClass("active");
-  });
-
-  new Swiper(".swiper-video", {
-    centeredSlides: true,
-    loop: true,
-    slidesPerView: 2.9,
-    spaceBetween: 120,
-  });
-}
+$(".header__arrow").click(function (e) {
+  $(this).prev().toggleClass("active");
+  $(this).next().toggleClass("active");
+  $(this).toggleClass("active");
+});
 $(".ui-slider-handle").draggable();
 // Удаление активных классов
 function removeActiveClass(arr, activeClass) {
@@ -35049,6 +35024,34 @@ new Swiper(".swiper-video", {
 $(".close-btn").click(function (e) {
   $(this).parent().removeClass("active");
 });
+
+class Rating {
+  constructor(dom) {
+    dom.innerHTML = '<svg width="110" height="20"></svg>';
+    this.svg = dom.querySelector("svg");
+    for (var i = 0; i < 5; i++)
+      this.svg.innerHTML += `<polygon data-value="${i + 1}"
+           transform="translate(${i * 22},0)" 
+           points="10,1 4,19.8 19,7.8 1,7.8 16,19.8">`;
+    this.svg.onclick = (e) => this.change(e);
+    this.render();
+  }
+
+  change(e) {
+    let value = e.target.dataset.value;
+    value && (this.svg.parentNode.dataset.value = value);
+    this.render();
+  }
+
+  render() {
+    this.svg.querySelectorAll("polygon").forEach((star) => {
+      let on = +this.svg.parentNode.dataset.value >= +star.dataset.value;
+      star.classList.toggle("active", on);
+    });
+  }
+}
+
+document.querySelectorAll(".rating").forEach((dom) => new Rating(dom));
 new Swiper(".swiper-recently", {
   slidesPerView: 2.1,
   spaceBetween: 5,
@@ -35167,15 +35170,15 @@ if (itemSlider) {
   new Swiper(thumbsForItemSlider, {
     spaceBetween: 0,
     slidesPerView: 1,
+    navigation: {
+      nextEl: ".swiper-thumbs-next",
+      prevEl: ".swiper-thumbs-prev",
+    },
 
     breakpoints: {
       993: {
         spaceBetween: 15,
         slidesPerView: 3,
-        navigation: {
-          nextEl: ".swiper-thumbs-next",
-          prevEl: ".swiper-thumbs-prev",
-        },
       },
     },
   });
@@ -35185,19 +35188,26 @@ if (itemSlider) {
     },
   });
 }
-const playersPlyr = Array.from(document.querySelectorAll("#plyrVideo"));
+const playersPlyrContainer = Array.from(
+  document.querySelectorAll(".plyrVideoContainer")
+);
 
-playersPlyr.map((player) => {
-  const newPlayer = new Plyr(player, {
-    controls: ["play-large", "play", "progress", "volume", "fullscreen"],
+setTimeout(() => {
+  playersPlyrContainer.map((container) => {
+    let player = container.querySelector("#plyrVideo");
+    let playerBtn = container.querySelector(".plyrVideoContainer__play");
+
+    player &&
+      player.addEventListener("click", () => {
+        player.controls = true;
+        player.play();
+        container.classList.add("active");
+      });
+    playerBtn &&
+      playerBtn.addEventListener("click", () => {
+        player.controls = true;
+        player.play();
+        container.classList.add("active");
+      });
   });
-  newPlayer.on("play", (e) => {
-    newPlayer.fullscreen.enter();
-  });
-  // newPlayer.on("pause", (e) => {
-  //   newPlayer.fullscreen.exit();
-  // });
-  newPlayer.on("ended", (e) => {
-    newPlayer.fullscreen.exit();
-  });
-});
+}, 400);
