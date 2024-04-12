@@ -9146,7 +9146,7 @@ body {
     height: auto;
     margin: 0px 0px 10px;
   }
-  .video-reviews__video * {
+  .video-reviews__video video, .video-reviews__video iframe {
     position: absolute;
     width: 100%;
     height: 100%;
