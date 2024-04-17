@@ -11,14 +11,6 @@
     <body>
         <div class="wrapper">
             <header class="header">
-                <div class="header__sale pc py-2.5 px-8">
-                    <div class="container">
-                        <p class="text-white flex items-center justify-center gap-2.5">
-                            <span>20%</span>
-                            Todays special Deal in your city
-                        </p>
-                    </div>
-                </div>
                 <div class="container">
                     <div class="header__row">
                         <div class="header__logo">
@@ -28,6 +20,7 @@
                         </div>
                         <a href="#" class="btn btn__mobile text-2xl flex items-center justify-center gap-4 flex-auto">
                             Book online now
+                            <img src="./img/svgicons/24.svg" alt="24">
                         </a>
                         <div class="header__burger">
                             <span></span>
@@ -45,13 +38,13 @@
                                         your address.
                                     </div>
                                 </button>
-                                <div class="header__sale mobile py-2.5 px-8 rounded-lg">
+                                <div class="header__sale py-2.5 px-8 rounded-lg">
                                     <p class="text-gradient flex items-center justify-center gap-2.5">
                                         <span>20%</span>
                                         Todays special Deal in your city
                                     </p>
                                 </div>
-                                <a class="header__phone flex gap-3 items-center" href="tel: +1-818-888-10-10">
+                                <a class="header__phone flex gap-3 items-center flex-row-reverse" href="tel: +1-818-888-10-10">
                                     <div class="btn">
                                         <img src="./img/svgicons/phone.svg" alt="phone">
                                     </div>
@@ -87,6 +80,7 @@
                                 </nav>
                                 <a href="#" class="btn text-2xl flex items-center justify-center gap-4 flex-auto">
                                     Book online now
+                                    <img src="./img/svgicons/24.svg" alt="24">
                                 </a>
                             </div>
                         </div>
@@ -227,8 +221,18 @@
                         <main class="video-reviews__row mb-20">
                             <div class="video-reviews__block gap-10">
                                 <div class="video-reviews__review">
-                                    <div class="video-reviews__video rounded-xl relative overflow-hidden mb-8">
-                                        <img src="./img/engineers/1.png" alt="1">
+                                    <div class="video-reviews__video plyrVideoContainer rounded-xl relative overflow-hidden mb-8">
+                                        <video
+                                            id="plyrVideo"
+                                            class="plyr__video-embed"
+                                            poster="./img/video-preview.png"
+                                            preload="none"
+                                        >
+                                            <source src="./img/1.mp4">
+                                        </video>
+                                        <div class="plyrVideoContainer__play">
+                                            ▶
+                                        </div>
                                     </div>
                                     <p class="swiper-vertical-three__name">Ashley R.</p>
                                     <div class="flex gap-3 items-center">
@@ -543,7 +547,7 @@
                                 <p>Determined by averaging the above Product Ratings</p>
                                 <div class="write-review__stars">
                                     <p>Features</p>
-                                    <div>☆☆☆☆☆</div>
+                                    <div class="rating"></div>
                                 </div>
                             </label>
                             <label class="custom-file flex flex-col gap-6 mb-10">
@@ -567,19 +571,19 @@
                                 </h3>
                                 <div class="write-review__stars">
                                     <p>Features</p>
-                                    <div>☆☆☆☆☆</div>
+                                    <div class="rating"></div>
                                 </div>
                                 <div class="write-review__stars">
                                     <p>Quality</p>
-                                    <div>☆☆☆☆☆</div>
+                                    <div class="rating"></div>
                                 </div>
                                 <div class="write-review__stars">
                                     <p>Performance</p>
-                                    <div>☆☆☆☆☆</div>
+                                    <div class="rating"></div>
                                 </div>
                                 <div class="write-review__stars">
                                     <p>Value</p>
-                                    <div>☆☆☆☆☆</div>
+                                    <div class="rating"></div>
                                 </div>
                             </label>
                             <label class="flex flex-col gap-6 mb-10">
@@ -587,7 +591,7 @@
                                 <p>Determined by averaging the above Product Ratings</p>
                                 <div class="write-review__stars">
                                     <p>Features</p>
-                                    <div>☆☆☆☆☆</div>
+                                    <div class="rating"></div>
                                 </div>
                             </label>
                             <label class="flex flex-col gap-6 mb-10">

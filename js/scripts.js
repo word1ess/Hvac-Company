@@ -34703,10 +34703,18 @@ $(".header__burger").click(function name(event) {
   $(".header__burger, .header__menu").toggleClass("burger-active");
 });
 $(".submenu").prev().addClass("has-submenu");
+
 $(".header__arrow").click(function (e) {
   $(this).prev().toggleClass("active");
   $(this).next().toggleClass("active");
   $(this).toggleClass("active");
+});
+
+new Swiper(".swiper-video", {
+  centeredSlides: true,
+  loop: true,
+  slidesPerView: 2.9,
+  spaceBetween: 120,
 });
 $(".ui-slider-handle").draggable();
 // Удаление активных классов
@@ -34773,6 +34781,20 @@ function clickForCustomSelect(parent) {
       body.classList.remove("active");
     });
   });
+}
+
+let valueOfPriceEquipment = Array.from(
+  document.querySelectorAll(".item-page__table tr")
+);
+valueOfPriceEquipment[0] &&
+  valueOfPriceEquipment.forEach((value, i, arr) => {
+    clickForTableValue(value, arr);
+  });
+function clickForTableValue(value, values) {
+  value.onclick = function () {
+    removeActiveClass(values, "active");
+    this.classList.add("active");
+  };
 }
 const customSelects = Array.from(document.querySelectorAll(".custom-select"));
 customSelects[0] &&
@@ -34911,10 +34933,38 @@ $(".equipment__filter").click(function (e) {
   $(this).next().slideToggle(100);
 });
 
+class Rating {
+  constructor(dom) {
+    dom.innerHTML = '<svg width="110" height="20"></svg>';
+    this.svg = dom.querySelector("svg");
+    for (var i = 0; i < 5; i++)
+      this.svg.innerHTML += `<polygon data-value="${i + 1}"
+           transform="translate(${i * 22},0)" 
+           points="10,1 4,19.8 19,7.8 1,7.8 16,19.8">`;
+    this.svg.onclick = (e) => this.change(e);
+    this.render();
+  }
+
+  change(e) {
+    let value = e.target.dataset.value;
+    value && (this.svg.parentNode.dataset.value = value);
+    this.render();
+  }
+
+  render() {
+    this.svg.querySelectorAll("polygon").forEach((star) => {
+      let on = +this.svg.parentNode.dataset.value >= +star.dataset.value;
+      star.classList.toggle("active", on);
+    });
+  }
+}
+
+document.querySelectorAll(".rating").forEach((dom) => new Rating(dom));
+
 function swiperGrid(slider, slides, space, rows, prev, next) {
   new Swiper(slider, {
     spaceBetween: space,
-
+    preventClicks: true,
     slidesPerView: 1,
     grid: {
       rows: 4,
@@ -34942,22 +34992,22 @@ function swiperGrid(slider, slides, space, rows, prev, next) {
   });
 }
 
-swiperGrid(
-  ".swiper-grid-three",
-  3,
-  20,
-  3,
-  ".swiper-grid-three-prev",
-  ".swiper-grid-three-next"
-);
-swiperGrid(
-  ".swiper-grid-two",
-  3,
-  20,
-  2,
-  ".swiper-grid-two-prev",
-  ".swiper-grid-two-next"
-);
+// swiperGrid(
+//   ".swiper-grid-three",
+//   3,
+//   20,
+//   3,
+//   ".swiper-grid-three-prev",
+//   ".swiper-grid-three-next"
+// );
+// swiperGrid(
+//   ".swiper-grid-two",
+//   3,
+//   20,
+//   2,
+//   ".swiper-grid-two-prev",
+//   ".swiper-grid-two-next"
+// );
 
 function defaultSwiper(
   slider,
@@ -34976,6 +35026,7 @@ function defaultSwiper(
     spaceBetween: 10,
     centeredSlides,
     loop,
+    preventClicks: true,
     navigation: {
       nextEl,
       prevEl,
@@ -35024,34 +35075,6 @@ new Swiper(".swiper-video", {
 $(".close-btn").click(function (e) {
   $(this).parent().removeClass("active");
 });
-
-class Rating {
-  constructor(dom) {
-    dom.innerHTML = '<svg width="110" height="20"></svg>';
-    this.svg = dom.querySelector("svg");
-    for (var i = 0; i < 5; i++)
-      this.svg.innerHTML += `<polygon data-value="${i + 1}"
-           transform="translate(${i * 22},0)" 
-           points="10,1 4,19.8 19,7.8 1,7.8 16,19.8">`;
-    this.svg.onclick = (e) => this.change(e);
-    this.render();
-  }
-
-  change(e) {
-    let value = e.target.dataset.value;
-    value && (this.svg.parentNode.dataset.value = value);
-    this.render();
-  }
-
-  render() {
-    this.svg.querySelectorAll("polygon").forEach((star) => {
-      let on = +this.svg.parentNode.dataset.value >= +star.dataset.value;
-      star.classList.toggle("active", on);
-    });
-  }
-}
-
-document.querySelectorAll(".rating").forEach((dom) => new Rating(dom));
 new Swiper(".swiper-recently", {
   slidesPerView: 2.1,
   spaceBetween: 5,
@@ -35192,22 +35215,24 @@ const playersPlyrContainer = Array.from(
   document.querySelectorAll(".plyrVideoContainer")
 );
 
-setTimeout(() => {
+$(document).ready(function () {
   playersPlyrContainer.map((container) => {
     let player = container.querySelector("#plyrVideo");
     let playerBtn = container.querySelector(".plyrVideoContainer__play");
 
     player &&
-      player.addEventListener("click", () => {
-        player.controls = true;
-        player.play();
-        container.classList.add("active");
+      player.addEventListener("click", (e) => {
+        clickForVideo(e, player, container);
       });
     playerBtn &&
-      playerBtn.addEventListener("click", () => {
-        player.controls = true;
-        player.play();
-        container.classList.add("active");
+      playerBtn.addEventListener("click", (e) => {
+        clickForVideo(e, player, container);
       });
+
+    function clickForVideo(e, player, container) {
+      player.controls = true;
+      player.play();
+      container.classList.add("active");
+    }
   });
-}, 400);
+});
